@@ -62,10 +62,10 @@ module.exports = (env, args) => {
             new WebpackPwaManifest({
                 // publicPath: './',
                 display: "standalone",
-                name: "Portfolio 3",
-                description: "Portfolio 3",
-                short_name: "Port3",
-                // start_url: "/port3/index.html",
+                name: "Webpack Example",
+                description: "Webpack Example",
+                short_name: "WE",
+                // start_url: "/index.html",
                 theme_color: "#ffffff",
                 background_color: "#ffffff",
                 icons: [
@@ -74,7 +74,7 @@ module.exports = (env, args) => {
                 ]
             }),
             new HtmlWebpackPlugin({
-                title: 'Portfolio 3',
+                title: 'Webpack Example',
                 favicon: './assets/favicon/favicon.ico'
             }),
             new MiniCssExtractPlugin({
