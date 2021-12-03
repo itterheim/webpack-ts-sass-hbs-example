@@ -1,0 +1,22 @@
+{
+  "icons": [
+    {
+      "src": "./icon_512x512.bcd4ae1ca1bcb305b1b29a248dd565ea.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon_192x192.a84b46abec427bc0c1b260cd3b2aba90.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Portfolio 3",
+  "short_name": "Port3",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Portfolio 3",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
