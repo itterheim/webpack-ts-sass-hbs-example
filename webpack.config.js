@@ -2,9 +2,10 @@ const path = require("path");
 const copy = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 
-module.exports = (env, args) => {
+const package = require('./package.json');
+
+module.exports = (env, args)=>{
     const mode = args.mode ?? 'production';
 
     return {
@@ -59,36 +60,42 @@ module.exports = (env, args) => {
             ]
         },
         plugins: [
-            new WebpackPwaManifest({
-                // publicPath: './',
-                display: "standalone",
-                name: "Webpack Example",
-                description: "Webpack Example",
-                short_name: "WE",
-                // start_url: "/index.html",
-                theme_color: "#ffffff",
-                background_color: "#ffffff",
-                icons: [
-                    { src: "./assets/favicon/android-chrome-192x192.png", sizes:"192x192",type: "image/png"},
-                    { src: "./assets/favicon/android-chrome-512x512.png", sizes:"512x512",type: "image/png"}
-                ]
-            }),
             new HtmlWebpackPlugin({
-                title: 'Webpack Example',
-                favicon: './assets/favicon/favicon.ico'
+                title: 'Test',
+                favicon: './assets/favicon/favicon.ico',
+                manifest: "./manifest.json",
+                template: './src/index.html',
             }),
             new MiniCssExtractPlugin({
-                filename: mode === "development" ? '[name].css' : '[name].[fullhash].css',
+                filename: mode === "development" ? '[name].css' : '[name].[contenthash].css',
             }),
-            // new copy({
-            //         patterns: [
-            //             {
-            //                 from: `./src/data.json`,
-            //                 to: "data.json"
-            //             },
-            //         ]
-            //     }
-            // )
+            new copy({
+                    patterns: [
+                        {
+                            from: "./src/manifest.json",
+                            to:   "./manifest.json",
+                            // transform (content, path) {
+                            //     var manifest = JSON.parse(content.toString());
+
+                            //     // make any modifications you like, such as
+                            //     manifest.version = package.version;
+
+                            //     // pretty print to JSON with two spaces
+                            //     manifest_JSON = JSON.stringify(manifest, null, 2);
+                            //     return manifest_JSON;
+
+                            // }
+                        }, {
+                            from: `./assets/favicon`,
+                            to: "./favicon"
+                        }
+                        // {
+                        //     from: `./src/data.json`,
+                        //     to: "data.json"
+                        // },
+                    ]
+                }
+            ),
         ],
         resolve: {
             extensions: [".ts", ".js"],

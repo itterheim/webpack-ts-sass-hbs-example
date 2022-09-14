@@ -1,4 +1,4 @@
-declare module '*.hbs' {
+declare module "*.hbs" {
     const fn: (data?: any) => string;
     export default fn;
 }
